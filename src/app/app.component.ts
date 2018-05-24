@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 //decorator that takes a js object as a parameter
 @Component({
   selector: 'app-root',
+  //name of the template file for this component
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
