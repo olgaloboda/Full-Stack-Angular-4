@@ -21,7 +21,8 @@ import { ContactComponent } from './contact/contact.component';
 
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
-
+import { LeaderService } from './services/leader.service';
+import { LoginComponent } from './login/login.component';
 
 //NGModule decorator - function that modifies the js classes
 //takes a certain set of metadata to describe the classes
@@ -34,7 +35,8 @@ import { PromotionService } from './services/promotion.service';
     FooterComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -43,10 +45,17 @@ import { PromotionService } from './services/promotion.service';
     HttpModule,
     MaterialModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [ DishService, 
-               PromotionService ],
+  providers: [ 
+               DishService, 
+               PromotionService,
+               LeaderService 
+  ],
+  entryComponents: [
+    LoginComponent
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
