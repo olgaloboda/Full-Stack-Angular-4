@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import 'hammerjs';
 
@@ -46,7 +47,7 @@ import { LoginComponent } from './login/login.component';
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [ 
                DishService, 
