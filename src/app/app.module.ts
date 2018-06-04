@@ -1,7 +1,7 @@
 //root module for the Angular application
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from './material.module';
@@ -48,7 +48,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     HighlightDirective
   ],
   imports: [
-    BrowserModule,
+    BrowserModule, 
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
