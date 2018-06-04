@@ -16,6 +16,4 @@ export class HighlightDirective {
   	this.renderer.removeClass(this.el.nativeElement, 'highlight');
   }
 
-  
-
 }
