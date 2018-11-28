@@ -1,4 +1,4 @@
-This task is a part of the Full-Stack Angular 4 course on Coursera, Full Stack Web and Multiplatform Mobile App Development Specialization.
+This task is a part of the Front-End Javascript Frameworks: Angular 4 course on Coursera, Full Stack Web and Multiplatform Mobile App Development Specialization.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
