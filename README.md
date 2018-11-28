@@ -1,6 +1,7 @@
-# ConFusion
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
+
+## Start Node module
+Run 'json-server --watch db.json' in the command prompt to start the web server. This should enable serving the application data.
 
 ## Development server
 
