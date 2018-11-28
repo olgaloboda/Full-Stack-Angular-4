@@ -78,6 +78,7 @@ export class DishdetailComponent implements OnInit {
 	        errmess => { 
 	        	this.dish = null; 
 	        	this.errMess = <any>errmess });
+
 	}
 
 	setPrevNext(dishId: number) {
@@ -95,7 +96,7 @@ export class DishdetailComponent implements OnInit {
 	createForm(): void {
 		this.commentForm = this.fb.group({
 			author: ['', [Validators.required, Validators.minLength(2)]],
-			rating: '',
+			rating: 5,
 			comment: ['', [Validators.required, Validators.minLength(2)]]
 		});
 
@@ -124,6 +125,7 @@ export class DishdetailComponent implements OnInit {
 
 	onSubmit() {
 		this.comment = this.commentForm.value;
+		console.log(this.dishcopy);
 		const date: Date = new Date();
 		this.dishcopy.comments.push({
 			rating: this.comment['rating'], 

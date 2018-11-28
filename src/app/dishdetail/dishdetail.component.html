@@ -45,7 +45,7 @@
 	 	</mat-list>
 	 	<mat-list *ngIf="commentForm.valid && commentForm.touched">
 	 		<mat-list-item>
-	 		<h4 mat-line> {{ commentForm.value.author}}</h4>
+	 		<h4 mat-line> {{ commentForm.value.author }}</h4>
 	 		<p mat-line>{{ commentForm.value.rating }} Stars</p>
 	 		<p mat-line>{{ commentForm.value.comment }}</p>
 	 		</mat-list-item>
@@ -79,7 +79,7 @@
  			<button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
  		</form>
 	 </div>
-	 <div [hidden]="dish">
+	 <div [hidden]="dish || errMess">
 		  <mat-spinner></mat-spinner><h4>Loading... Please wait</h4>
 	 </div>
 	 <div *ngIf="errMess">

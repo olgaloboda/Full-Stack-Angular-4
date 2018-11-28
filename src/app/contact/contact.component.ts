@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Feedback, ContactType } from '../shared/feedback';
 
-import { flyInOut } from '../animations/app.animation';
+import { Feedback, ContactType } from '../shared/feedback';
+import { FeedbackService } from '../services/feedback.service';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+
+import { visibility, flyInOut } from '../animations/app.animation';
 
 @Component({
   selector: 'app-contact',
@@ -13,14 +16,25 @@ import { flyInOut } from '../animations/app.animation';
     'style': 'display: block;'
   },
   animations: [
-    flyInOut()
+    flyInOut(),
+    trigger('fade', [
+    	state('void', style ({ opacity: 1})),
+    	transition(':enter, :leave',[
+    		animate(2000)
+    	])
+   	])
   ]
 })
 export class ContactComponent implements OnInit {
 
 	feedbackForm: FormGroup;
+	//data model
 	feedback: Feedback;
-	contactType = ContactType;
+	feedbackcopy = null;
+	contacttype = ContactType;
+	submitted: boolean;
+	errMess: string;
+	
 	formErrors = {
 		'firstname': '',
 		'lastname': '',
@@ -50,11 +64,18 @@ export class ContactComponent implements OnInit {
 
 	};
 
-	constructor(private fb: FormBuilder) { 
+	constructor(private fb: FormBuilder,
+				private feedbackservice: FeedbackService, 
+				@Inject('BaseURL') private BaseURL) { 
 		this.createForm();
 	}
 
 	ngOnInit() {
+		// this.feedbackservice.getOneFeedback()
+		// 			.subscribe(feedback => { 
+		//       		this.feedbackcopy = feedback;
+		//       	});
+
 	}
 
 	createForm(): void {
@@ -64,7 +85,7 @@ export class ContactComponent implements OnInit {
 			telnum: ['', [Validators.required, Validators.pattern]],
 			email: ['', [Validators.required, Validators.email]],
 			agree: false,
-			contactType: 'None',
+			contacttype: 'None',
 			message: ''
 		});
 
@@ -92,17 +113,43 @@ export class ContactComponent implements OnInit {
 	      }
 	    }
 	}
-
+	submittedFun() {
+		setTimeout (
+		this.submitted = true, 5000);
+		this.submitted = false;
+	}
 	onSubmit() {
 		this.feedback = this.feedbackForm.value;
-		console.log(this.feedback);
+		// console.log(this.feedbackcopy);
+		// this.feedbackcopy.push({
+		// 	firstname: this.feedback['firstname'],
+		// 	lastname: this.feedback['lastname'],
+		// 	telnum: this.feedback['telnum'],
+		// 	email: this.feedback['email'],
+		// 	agree: this.feedback['agree'],
+		// 	contacttype: this.feedback['contacttype'],
+		// 	message: this.feedback['message']
+		// });
+
+		// console.log('Copy: ', this.feedbackcopy);
+		// console.log('Original: ', this.feedback);
+		// this.feedbackcopy.save()
+		// 				.subscribe(feedback => this.feedback = feedback);
+		
+		this.feedbackservice.submitFeedback(this.feedback)
+						.subscribe(feedback => this.feedback = feedback);
+		
+		
+		setTimeout(feedback => this.feedback = feedback, 5000);				
+
+		// console.log(this.feedbackcopy);
 		this.feedbackForm.reset({
 			firstname: '',
 			lastname: '',
 			telnum: '',
 			email: '',
 			agree: false,
-			contactType: 'None',
+			contacttype: 'None',
 			message: ''
 		});
 	}
